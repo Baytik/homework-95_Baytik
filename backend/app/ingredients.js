@@ -25,19 +25,23 @@ router.get('/', async (req, res) => {
     const authorization = req.get('Authorization');
 
     if(!authorization) {
-        const albums = await Ingredient.find({published: true}).populate('user', {displayName: 1});
-        return res.send(albums)
+        const ingredients = await Ingredient.find({published: true}).populate('user', {displayName: 1});
+        return res.send(ingredients)
     }
 
     const user = await User.findOne({token: authorization});
 
     if (user.role !== 'admin') {
-        const albums = await Ingredient.find({published: true}).populate('user', {displayName: 1});
-        return res.send(albums);
+        const ingredients = await Ingredient.find({published: true}).populate('user', {displayName: 1});
+        return res.send(ingredients);
     } else if (user.role === 'admin') {
-        const albums = await Ingredient.find().populate('user', {displayName: 1});
-        return res.send(albums)
+        const ingredients = await Ingredient.find().populate('user', {displayName: 1});
+        return res.send(ingredients)
     }
+});
+
+router.get('/my/ingredients', auth, async (req, res) => {
+    
 });
 
 router.post('/', auth, upload.single('image'), async (req, res) => {
@@ -75,13 +79,13 @@ router.delete('/:id', [auth, permit('admin')], async (req, res) => {
 });
 
 router.post('/:id/published', [auth, permit('admin')], async (req, res) => {
-    const artist = await Ingredient.findById(req.params.id);
-    if (!artist) {
+    const ingredient = await Ingredient.findById(req.params.id);
+    if (!ingredient) {
         return res.status(404).send({message: 'Not found'})
     }
-    artist.published = true;
-    await artist.save();
-    return res.send(artist)
+    ingredient.published = true;
+    await ingredient.save();
+    return res.send(ingredient)
 });
 
 module.exports = router;

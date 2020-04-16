@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Ingredients.css';
 import {connect} from "react-redux";
-import {fetchIngredients} from "../../store/actions/ingridientsAction";
+import {deleteIngredient, fetchIngredients, publishIngredient} from "../../store/actions/ingridientsAction";
 import {apiURL} from "../../apiURL";
 
 class Ingredients extends Component {
@@ -10,8 +10,16 @@ class Ingredients extends Component {
         this.props.fetchIngredients();
     }
 
+    deleteIngredientHandler = async (id) => {
+        await this.props.deleteIngredient(id)
+    };
+
+    publicIngredientHandler = async (id) => {
+      await this.props.publishIngredient(id)
+    };
+
     render() {
-        console.log(this.props.ingredients);
+        console.log(this.props.ingredients)
         return (
             <div className="cocktails">
                 <h1>Cocktails</h1>
@@ -37,6 +45,14 @@ class Ingredients extends Component {
                             <h2>Recipe: </h2>
                             <p>{ingredient.recipe}</p>
                         </div>
+                        <div>
+                            {ingredient.published === false && (
+                                <button className="public" onClick={() => this.publicIngredientHandler(ingredient._id)}>Public</button>
+                            )}
+                            {ingredient.role === 'admin' && (
+                            <button className="delete" onClick={() => this.deleteIngredientHandler(ingredient._id)}>Delete</button>
+                            )}
+                        </div>
                     </div>
                 ))}
             </div>
@@ -45,11 +61,14 @@ class Ingredients extends Component {
 }
 
 const mapStateToProps = state => ({
+    user: state.user.user,
     ingredients: state.ingredients.ingredients
 });
 
 const mapDispatchToProps = dispatch => ({
     fetchIngredients: () => dispatch(fetchIngredients()),
+    publishIngredient: (id) => dispatch(publishIngredient(id)),
+    deleteIngredient: (id) => dispatch(deleteIngredient(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ingredients);

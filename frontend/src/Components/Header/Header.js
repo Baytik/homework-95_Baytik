@@ -36,7 +36,7 @@ class Header extends Component {
                                     <p>/</p>
                                 </li>
                                 <li>
-                                    <NavLink to="/my/ingredient">My ingredient</NavLink>
+                                    <NavLink to="/my/ingredients">My ingredients</NavLink>
                                 </li>
                                 <li>
                                     <p>/</p>
