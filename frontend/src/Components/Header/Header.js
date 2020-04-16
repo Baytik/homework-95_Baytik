@@ -16,7 +16,7 @@ class Header extends Component {
         return (
             <header className="header">
                 <div className="logo">
-                    <NavLink to="/">Home</NavLink>
+                    <NavLink to="/">Cocktail builder</NavLink>
                 </div>
                 <nav className="main-nav">
                     <ul>

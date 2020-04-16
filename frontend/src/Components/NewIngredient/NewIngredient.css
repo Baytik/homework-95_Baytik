@@ -1,0 +1,56 @@
+.new-ingredient h1{
+    margin-top: 40px;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+.new-ingredient div {
+    margin: 20px 0;
+}
+.new-ingredient span {
+    font-size: 19px;
+    margin-right: 10%;
+}
+.new-ingredient input {
+    font-size: 18px;
+    padding: 8px 5px;
+    border: 2px solid black;
+    width: 400px;
+}
+.input-1 {
+    margin-left: 5%;
+}
+.input-3 {
+    margin-left: 4%;
+}
+.input-4 {
+    margin-left: 5%;
+}
+.add {
+    border: 2px solid black;
+    padding: 5px 10px;
+    font-size: 16px;
+    background: white;
+    cursor: pointer;
+    margin-left: 22%;
+}
+.create {
+    border: 2px solid black;
+    padding: 6px 12px;
+    font-size: 18px;
+    background: white;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-left: 21%;
+}
+.ingredients input {
+    font-size: 16px;
+    padding: 4px 8px;
+}
+.ingredients .input-2 {
+    margin-left: 21%;
+    width: 220px;
+    margin-right: 20px;
+}
+.ingredients .input-5 {
+    width: 100px;
+}

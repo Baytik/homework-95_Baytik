@@ -1,0 +1,49 @@
+.cocktails {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.cocktails h1 {
+    margin-left: 30%;
+    margin-top: 50px;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+.cocktail {
+    margin-bottom: 40px;
+    border-bottom: 2px solid black;
+}
+.cocktail:last-child {
+    border-bottom: none;
+}
+.flex {
+    display: flex;
+}
+.flex div {
+    margin: 0 10px;
+}
+.flex h2 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: normal;
+    text-transform: capitalize;
+}
+.flex img {
+    width: 150px;
+    height: 200px;
+}
+.flex h3 {
+    margin: 0;
+}
+.flex h4 {
+    margin: 10px 0;
+}
+.flex p {
+    margin-left: 25px;
+    text-transform: capitalize;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.recipe h2 {
+    margin-top: 0;
+}
