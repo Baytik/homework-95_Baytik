@@ -19,7 +19,6 @@ class Ingredients extends Component {
     };
 
     render() {
-        console.log(this.props.ingredients)
         return (
             <div className="cocktails">
                 <h1>Cocktails</h1>
@@ -49,8 +48,10 @@ class Ingredients extends Component {
                             {ingredient.published === false && (
                                 <button className="public" onClick={() => this.publicIngredientHandler(ingredient._id)}>Public</button>
                             )}
-                            {ingredient.role === 'admin' && (
+                            {this.props.user ? this.props.user.role === 'admin' && (
                             <button className="delete" onClick={() => this.deleteIngredientHandler(ingredient._id)}>Delete</button>
+                            ) : (
+                                <div/>
                             )}
                         </div>
                     </div>

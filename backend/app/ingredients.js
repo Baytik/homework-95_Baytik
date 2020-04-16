@@ -25,23 +25,28 @@ router.get('/', async (req, res) => {
     const authorization = req.get('Authorization');
 
     if(!authorization) {
-        const ingredients = await Ingredient.find({published: true}).populate('user', {displayName: 1});
+        const ingredients = await Ingredient.find({published: true}).populate('user', {displayName: 1, role: 1});
         return res.send(ingredients)
     }
 
     const user = await User.findOne({token: authorization});
 
     if (user.role !== 'admin') {
-        const ingredients = await Ingredient.find({published: true}).populate('user', {displayName: 1});
+        const ingredients = await Ingredient.find({published: true}).populate('user', {displayName: 1, role: 1});
         return res.send(ingredients);
     } else if (user.role === 'admin') {
-        const ingredients = await Ingredient.find().populate('user', {displayName: 1});
+        const ingredients = await Ingredient.find().populate('user', {displayName: 1, role: 1});
         return res.send(ingredients)
     }
 });
 
 router.get('/my/ingredients', auth, async (req, res) => {
-    
+    const user = req.user;
+    const ingredients = await Ingredient.find({user: user._id});
+    if (!ingredients) {
+        return res.status(400).send({message: 'Not found'});
+    }
+    res.send(ingredients);
 });
 
 router.post('/', auth, upload.single('image'), async (req, res) => {
